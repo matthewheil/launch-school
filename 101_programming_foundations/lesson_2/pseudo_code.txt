@@ -1,0 +1,13 @@
+1. a method that returns the sum of two integers
+* take two numbers as parameters and add them together
+
+2. a method that takes an array of strings, and returns a string that is all
+those strings concatenated together
+* take an array of strings as a parameter
+* iterate through the array and append each item to a string
+
+3. a method that takes an array of integers, and returns a new array with every
+other element
+* take an array of integers as a parameter
+* iterate through the array but skip odd indexes in the array
+* insert the even indexes into a new array
