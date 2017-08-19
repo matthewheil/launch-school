@@ -76,4 +76,4 @@ loop do
   break unless answer == 'y'
 end
 
-prompt(MESSAGES['thanks'] + "#{name}!")
+prompt(MESSAGES['thanks'] + name.to_s + "!")
