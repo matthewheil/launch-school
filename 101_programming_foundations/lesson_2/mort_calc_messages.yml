@@ -1,0 +1,12 @@
+# mortgage calculator messages
+
+welcome: "Welcome to the mortgage calculator! Enter your name:"
+enter_loan: "Enter the loan amount:"
+valid_loan: "Please enter a valid loan amount (omit any commas):"
+enter_apr: "Enter the APR:"
+valid_apr: "Please enter a valid APR:"
+enter_years: "Enter the loan duration in years:"
+valid_years: "Please enter a valid loan duration in years:"
+monthly_payment: "Your monthly payment is: $"
+another?: "Would you like to do another loan calculation?"
+thanks: "Thanks for using the mortgage calculator "

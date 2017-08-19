@@ -1,0 +1,12 @@
+# calc_messages.yml
+
+number_request: "Please enter two numbers."
+invalid_numbers: "You did not enter two valid numbers."
+welcome: "Welcome to the calculator! Enter your name:"
+invalid_name: "Please enter a valid name."
+invalid_operator: "Please enter a valid operation: a, s, m, d"
+greet_name: "Hello "
+perform_operation: " the two numbers..."
+result: "The result is "
+another?: "Would you like to do another calculation? (Y to go again)"
+thanks: "Thank you for using the calculator "
