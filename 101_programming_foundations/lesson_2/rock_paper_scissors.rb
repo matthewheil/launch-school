@@ -1,5 +1,3 @@
-require 'pry'
-
 VALID_CHOICES = %w(rock paper scissors lizard Spock)
 
 WINNING_CONDITIONS = [%w(rock scissors), %w(paper rock), %w(scissors paper),
