@@ -12,7 +12,7 @@ def convert_choice!(player_abbreviated_choice)
   when 'p'  then player_abbreviated_choice.replace 'paper'
   when 'sc' then player_abbreviated_choice.replace 'scissors'
   when 'l'  then player_abbreviated_choice.replace 'lizard'
-  when 'sp' then player_abbreviated_choice.replace 'Spock'
+  when 'sp' then player_abbreviated_choice.replace 'spock'
   end
 end
 
@@ -46,17 +46,14 @@ def clear_screen
   (system('clear') || system('cls'))
 end
 
-welcome_message = <<-MSG
-Welcome to Rock, Paper, Scissors, Lizard, Spock!
-    The first one to win 5 games wins the match!
-   ----------------------------------------------
-MSG
-
 loop do
   player_wins = 0
   computer_wins = 0
 
-  prompt(welcome_message)
+  prompt("_".center(90, '_'))
+  prompt("Welcome to #{VALID_CHOICES.join(', ')}!".center(90, '_'))
+  prompt("The first one to win 5 games wins the match!".center(90, '_'))
+  prompt("_".center(90, '_'))
 
   loop do
     player_choice = ''

@@ -1,0 +1,26 @@
+Write a method that takes one argument, an array containing integers, and 
+returns the average of all numbers in the array. The array will never be empty 
+and the numbers will always be positive integers.
+
+Understanding the problem:
+  method that takes only one argument
+  argument is an array of positive integers
+  returns the average of all numbers in the array
+  
+Test Cases:
+  puts average([1, 5, 87, 45, 8, 8]) == 25
+  puts average([9, 47, 23, 95, 16, 52]) == 40
+  
+Input:
+  an array
+  contents of array are positive integers
+  
+Output:
+  an integer
+  integer is the average of all numbers in the array (rounded down)
+  
+Logic:
+  create a sum variable = 0
+  array.each
+    sum += element value
+  return sum / array.size
