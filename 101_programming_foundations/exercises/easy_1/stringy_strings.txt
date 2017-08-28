@@ -1,0 +1,38 @@
+Write a method that takes one argument, a positive integer, and returns a string
+of alternating 1s and 0s, always starting with 1. The length of the string should
+match the given integer.
+
+Understanding the Problem:
+  given a number, create a string of 1s and 0s, always starting with 1
+  the length of the string should be equal to the number given
+
+Test Cases:
+  puts stringy(6) == '101010'
+  puts stringy(9) == '101010101'
+  puts stringy(4) == '1010'
+  puts stringy(7) == '1010101'
+  ** no validation on input -- assume positive integers **
+  * Do I need to handle edge cases?
+  * Should I handle errors and raise exceptions?
+
+Input:
+  positive integer
+
+Output:
+  string
+  starts with 1
+  alternates 1s and 0s
+  length is the passed integer
+  no spaces or punctuation
+          
+Logic:
+  set count to 1 outside the loop
+  set string to ''
+  make a loop that iterates based on passed integer
+  inside the loop
+    if the count is odd, append a 1 to string variable
+    if the count is even, append a 0 to string variable
+    increment count by 1
+  loop while count <= number passed
+  returns string
+  
