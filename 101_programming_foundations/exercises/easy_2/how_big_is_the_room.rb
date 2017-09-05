@@ -10,4 +10,4 @@ square_meters = length_meters * width_meters
 square_feet = square_meters * SQMETERS_TO_SQFEET
 
 puts  "The area of the room is #{square_meters} " \
-      "square meters (#{square_feet} square feet)."
+      "square meters (#{square_feet.round(2)} square feet)."
