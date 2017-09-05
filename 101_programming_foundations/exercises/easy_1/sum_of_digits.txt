@@ -1,0 +1,25 @@
+Write a method that takes one argument, a positive integer, and returns the sum 
+of its digits.
+
+Understanding the problem:
+  * write a method
+  * the method takes an positive integer
+  * sum the individual digits
+  * return the sum
+  
+Test cases:
+  puts sum(23) == 5
+  puts sum(496) == 19
+  puts sum(123_456_789) == 45
+  
+Input:
+  positive integer
+  
+Output:
+  sum of the digits in the integer
+  
+Logic:
+  convert the number to a string
+  split the string
+  for each element, convert to number
+  reduce the array :+
