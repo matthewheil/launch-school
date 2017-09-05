@@ -1,0 +1,24 @@
+Build a program that asks a user for the length and width of a room in meters 
+and then displays the area of the room in both square meters and square feet.
+
+Understand the problem:
+  prompt the user for two numbers: length & width in meters
+  calculate two values: square meters and square feet
+    (one square meter == 10.7639 square feet)
+  display both calculated values to the user
+  
+Example run:
+  Enter the length of the room in meters:
+  10
+  Enter the width of the room in meters:
+  7
+  The area of the room is 70.0 square meters (753.47 square feet).
+  
+Logic:
+  variable for length
+  variable for width
+  var for area meters
+  var for area feet
+  get lenght & width from user in meters
+  calculate area in meters and feet
+  display results to user
