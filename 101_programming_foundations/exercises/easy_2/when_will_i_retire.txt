@@ -1,0 +1,38 @@
+Build a program that displays when the user will retire and how many years 
+she has to work till retirement.
+
+Understand the problem:
+  ask the user for two inputs: their age & age of retirement
+  calculate the difference in years and store in a variable
+  display the current year and the year + age difference
+  display how many years to go
+
+Example:
+  What is your age? 30
+  At what age would you like to retire? 70
+  
+  It's 2016. You will retire in 2056.
+  You have only 40 years of work to go!
+  
+Input:
+  age
+  retirement age
+  
+Output:
+  Difference in age and retirement age
+  Current year and year of retirement
+  
+Logic:
+  prompt user for age
+  store in variable
+  
+  prompt user for retirement age
+  store in variable
+  
+  calculate difference in retirement age and age
+  store in variable
+  
+  display current year
+  add difference in ages in years to current year and display
+  
+  display how many years to go (difference in years)

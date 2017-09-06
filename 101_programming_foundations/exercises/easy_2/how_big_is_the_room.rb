@@ -7,7 +7,7 @@ print "Enter the width of the room in meters: "
 width_meters = gets.chomp.to_f
 
 square_meters = length_meters * width_meters
-square_feet = square_meters * SQMETERS_TO_SQFEET
+square_feet = (square_meters * SQMETERS_TO_SQFEET).round(2)
 
 puts  "The area of the room is #{square_meters} " \
-      "square meters (#{square_feet.round(2)} square feet)."
+      "square meters (#{square_feet} square feet)."

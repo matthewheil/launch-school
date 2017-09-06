@@ -1,0 +1,33 @@
+Write a program that will ask for user's name. The program will then greet the 
+user. If the user writes "name!" then the computer yells back to the user.
+
+Examples:
+
+  What is your name? Bob
+  Hello Bob.
+  What is your name? Bob!
+  HELLO BOB. WHY ARE WE SCREAMING?
+  
+Understand the problem:
+  prompt a user for their name
+  greet them normally unless they put a !
+    then greet them with all caps
+  (assuming no validation on input from user)
+
+Input:
+  name
+  
+Output:
+  one of two greetings
+    normal greeting 
+    all caps greeting (if name!)
+    
+Logic:
+  ask user for their name
+  store in variable
+  
+  if name.chars.last == '!'
+    remove ! from name
+    greet with all caps
+  else
+    greet normally

@@ -1,0 +1,17 @@
+Print all odd numbers from 1 to 99, inclusive. All numbers should be printed 
+on separate lines.
+
+Understand the problem:
+  print all odd numbers from 1 to 99 on separate lines
+  
+Input:
+  n/a
+  
+Output:
+  display odd numbers from 1 to 99 on separate lines
+  
+Logic:
+  for number in (1..99)
+    next if number.even?
+    display number + 1
+  end

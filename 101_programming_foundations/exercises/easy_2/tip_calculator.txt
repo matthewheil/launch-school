@@ -1,0 +1,36 @@
+Create a simple tip calculator. The program should prompt for a bill amount 
+and a tip rate. The program must compute the tip and then display both the tip 
+and the total amount of the bill.
+
+Understand the problem:
+  create a program that prompts the user for two things: bill amount & tip rate
+  calculates the tip
+  display the tip and total amount of the bill to the user
+  
+Example:
+  What is the bill? 200
+  What is the tip percentage? 15
+  
+  The tip is $30.0
+  The total is $230.0
+  
+Input:
+  positive number for bill amount
+  positive number for tip percentage
+  
+Output:
+  Dollar amount (2 decimal places) for tip
+  Dollar amount (2 decimal places) for total bill
+  
+Logic:
+  prompt the user for the bill amount
+  capture into variable as a float
+  
+  prompt the user for the tip percentage
+  capture into variable as a float
+  
+  capture calculated tip (bill x (tip percentage / 100)) in variable with 2 decimals
+  total = tip amount + bill with 2 decimals
+  
+  display tip amount
+  display total
