@@ -1,0 +1,55 @@
+Write a program that solicits 6 numbers from the user, then prints a message 
+that describes whether or not the 6th number appears amongst the first 5 
+numbers.
+
+Examples:
+
+==> Enter the 1st number:
+25
+==> Enter the 2nd number:
+15
+==> Enter the 3rd number:
+20
+==> Enter the 4th number:
+17
+==> Enter the 5th number:
+23
+==> Enter the last number:
+17
+The number 17 appears in [25, 15, 20, 17, 23].
+
+
+==> Enter the 1st number:
+25
+==> Enter the 2nd number:
+15
+==> Enter the 3rd number:
+20
+==> Enter the 4th number:
+17
+==> Enter the 5th number:
+23
+==> Enter the last number:
+18
+The number 18 does not appear in [25, 15, 20, 17, 23].
+
+Understand the problem:
+  prompt the user for a number 6 times and store those numbers in an array
+  display to the user if the 6th number appears in the first 5 numbers given
+  
+Input:
+  an integer (6 times)
+  
+Output:
+  whether the 6th integer is found in the first 5 entered
+  the 6th integer entered
+  the array of integers
+  
+Logic:
+  Make a method that gets the numbers from the user and returns the array of #'s
+    use a loop that prompts for a number and verifies
+  Make a method for verifying that the numbers are integers
+  Make a method for seeing if the last number in an array is included in first 5
+    array.first(5).include?(array.last)
+  Do an if/else to display to the user the results
+  
