@@ -1,0 +1,39 @@
+Let's now take a look at an example with hashes. In this example we want to 
+select the key-value pairs where the value is 'Fruit'.
+
+  produce = {
+    'apple' => 'Fruit',
+    'carrot' => 'Vegetable',
+    'pear' => 'Fruit',
+    'broccoli' => 'Vegetable'
+  }
+
+select_fruit(produce) # => {"apple"=>"Fruit", "pear"=>"Fruit"}
+
+How would you implement a method like this?
+
+Understand the problem:
+  create a method that takes a hash and returns a new hash with only the
+  key-value pairs that have a value of "Fruit"
+  has to use a loop do
+  
+Input:
+  a hash
+
+Output:
+  a new hash that has key-value pairs where value is Fruit from input hash
+  
+Logic:
+  create a method accepting a hash
+    create a variable for the new hash
+    create a variable that is an array of the keys
+    create a counter set to 0
+    
+    loop
+      break if the keys is empty
+      if hash[keys[counter]] == "Fruit" then append it to new hash
+      increment counter
+      break if counter > keys_array.size
+    end
+    
+    return new hash

@@ -1,0 +1,52 @@
+Write a program that asks the user to enter an integer greater than 0, then 
+asks if the user wants to determine the sum or product of all numbers between 
+1 and the entered integer.
+
+Examples:
+  >> Please enter an integer greater than 0:
+  5
+  >> Enter 's' to compute the sum, 'p' to compute the product.
+  s
+  The sum of the integers between 1 and 5 is 15.
+  
+  
+  >> Please enter an integer greater than 0:
+  6
+  >> Enter 's' to compute the sum, 'p' to compute the product.
+  p
+  The product of the integers between 1 and 6 is 720.
+  
+Understand the problem:
+  ask the user for a number greater than 0
+  ask if the user wants the sum or product
+  calculate either the sum or product of all numbers from 1 to the number entered
+  display the result to the user
+  
+Input:
+  an integer greater than 0
+  a choice: sum or product
+  
+Output:
+  if choice is sum, the sum of numbers from 1 to the entered number
+  if choice is product, the product of numbers from 1 to the entered number
+  
+Logic
+  prompt user for integer greater than 0
+  store in variable
+  
+  prompt user for choice of sum or product
+  store in variable
+  
+  create variable for result
+  
+  if choice is sum
+    number.times do |number|
+      result += (number + 1)
+    end
+  else (choice is product)
+    number.times do |number|
+      result *= (number + 1)
+    end
+  end
+  
+  display result
