@@ -1,0 +1,18 @@
+Amend this array so that the names are all shortened to just the first three 
+characters:
+
+flintstones = %w(Fred Barney Wilma Betty BamBam Pebbles)
+
+Understand the problem:
+  given an array of names, mutate the array so that the names are shortened to
+  just the first three characters
+  
+Input:
+  an array of names
+  
+Output:
+  the same array with the names shortened to the first three characters
+  
+Logic:
+  map! the array and do the following block for each element
+    element = element[0, 3]

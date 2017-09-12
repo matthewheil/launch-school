@@ -1,0 +1,22 @@
+Add up all of the ages from the Munster family hash:
+
+ages = { 
+        "Herman" => 32, 
+        "Lily" => 30, 
+        "Grandpa" => 5843, 
+        "Eddie" => 10, 
+        "Marilyn" => 22, 
+        "Spot" => 237 }
+        
+Understand the problem:
+  given a hash, add up all of the values
+  
+Input:
+  hash with keys for names and values are ages
+  
+Output:
+  a sum of all of the values (ages)
+  
+Logic
+  reduce or inject the values of the hash with the + operator
+  

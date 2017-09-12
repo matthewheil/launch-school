@@ -1,0 +1,30 @@
+Given the array below
+
+flintstones = ["Fred", "Barney", "Wilma", "Betty", "Pebbles", "BamBam"]
+
+Turn this array into a hash where the names are the keys and the values are the 
+positions in the array.
+
+Understand the problem:
+  given an array, create a hash so that:
+    the elements in the array are the keys
+    the index of those elements is the values
+
+Example:
+  ['a', 'b', 'c']
+  
+  => { 'a' => 0, 'b' => 1, 'c' => 2 }
+
+Input:
+  an array
+  
+Output:
+  a hash:
+    key is the element of the array
+    value is the index of that element
+    
+Logic:
+  create an empty hash
+  iterate through the array with index
+  assign hash[element] = index
+  display the hash
