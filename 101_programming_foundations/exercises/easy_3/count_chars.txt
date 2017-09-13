@@ -1,0 +1,28 @@
+Counting the Number of Characters
+
+Write a program that will ask a user for an input of a word or multiple words 
+and give back the number of characters. Spaces should not be counted as a 
+character.
+
+
+Examples:
+  input:  Please write word or multiple words: walk
+  output:  There are 4 characters in "walk".
+  
+  input:  Please write word or multiple words: walk, don't run
+  output:  There are 13 characters in "walk, don't run". 
+  
+Understand the problem:
+  given a string of one or more words, display the number of characters in 
+  those words. do not count spaces.
+  
+Input:
+  a string containing one or more words
+  
+Output:
+  display to the user the number of characters in the given string
+  
+Logic:
+  prompt user for a word or words and store in var
+  create var counted_chars = given string split, joined(no space), .chars, count
+  display the counted_chars in the given string

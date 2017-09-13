@@ -1,0 +1,21 @@
+Create a method that takes two arguments, multiplies them together, and returns 
+the result.
+
+Example:
+
+multiply(5, 3) == 15
+
+Understand the problem:
+  create a method that receives two numbers and returns the product of those 
+  numbers
+  
+Input
+  two numbers
+  
+Output
+  the product of the two numbers
+  
+Logic:
+  create a method that takes two arguments
+  return argument1 * argument2
+  (assuming no validation)

@@ -1,0 +1,22 @@
+Using the multiply method from the "Multiplying Two Numbers" problem, write a 
+method that computes the square of its argument (the square is the result of 
+multiplying a number by itself).
+
+Example:
+
+square(5) == 25
+square(-8) == 64
+
+Understand the problem:
+  using the multiply method from the previous exercise, write a method that 
+  returns the square of the argument
+  
+Input:
+  a number
+  
+Output:
+  the square of that number
+  
+Logic:
+  write a square method that takes a number as an argument
+    calls multiply and passes the number as both parameters
