@@ -1,0 +1,35 @@
+Multiples of 3 and 5
+
+Write a method that searches for all multiples of 3 or 5 that lie between 1 
+and some other number, and then computes the sum of those multiples. 
+
+For instance, if the supplied number is 20, 
+the result should be 98 (3 + 5 + 6 + 9 + 10 + 12 + 15 + 18 + 20).
+
+You may assume that the number passed in is an integer greater than 1.
+
+Examples
+
+multisum(3) == 3
+multisum(5) == 8
+multisum(10) == 33
+multisum(1000) == 234168
+
+understand the problem:
+  write a method that takes a number as an argument
+  iterate from 1 to that number
+    select any numbers that are divisible by 3 or 5 and sum them together
+
+input:
+  a number greater than 1
+
+output:
+  the sum of numbers between 1 and given number that are divisible by 3 or 5
+
+logic:
+  write a method that takes a number as an argument
+  create an empty array
+  iterate from 1 to the number given
+   if current_num % 3 == 0 or current_num % 5 == 0
+    then new_array << current_num
+  return new_array.reduce(:+)
