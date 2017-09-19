@@ -1,0 +1,43 @@
+After Midnight (Part 2)
+
+As seen in the previous exercise, the time of day can be represented as the 
+number of minutes before or after midnight. If the number of minutes is 
+positive, the time is after midnight. If the number of minutes is negative, 
+the time is before midnight.
+
+Write two methods that each take a time of day in 24 hour format, and return 
+the number of minutes before and after midnight, respectively. Both methods 
+should return a value in the range 0..1439.
+
+You may not use ruby's Date and Time methods.
+
+Examples:
+
+after_midnight('00:00') == 0
+before_midnight('00:00') == 0
+after_midnight('12:34') == 754
+before_midnight('12:34') == 686
+after_midnight('24:00') == 0
+before_midnight('24:00') == 0
+Disregard Daylight Savings and Standard Time and other irregularities.
+
+Understand the problem:
+  Create a method that takes a string in the form of hours and minutes "hh:mm"
+  as an argument and returns that time as the number of minutes after midnight.
+  Create a method that takes a string in the form of hours and minutes "hh:mm"
+  as an argument and returns that time as the number of minutes before midnight.
+
+Input:
+  A string indicating the time in hours and minutes "hh:mm"
+
+Output:
+  An integer equal to the number of minutes before midnight (0..1439).
+  An integer equal to the number of minutes after midnight (0..1439).
+
+Logic:
+  Split the string on ":", map(&:to_i) and store the results as hours and minutes
+  after_midnight:
+    convert hours to minutes and sum with minutes
+  before_midnight:
+    convert hours to minutes, sum with minutes, and subtract from total minutes in a day
+  Return 0 if hours == 24

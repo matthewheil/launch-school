@@ -1,0 +1,27 @@
+Clean up the words
+
+Given a string that consists of some words and an assortment of non-alphabetic 
+characters, write a method that returns that string with all of the 
+non-alphabetic characters replaced by spaces. If one or more non-alphabetic 
+characters occur in a row, you should only have one space in the result (the 
+result should never have consecutive spaces).
+
+Examples:
+
+cleanup("---what's my +*& line?") == ' what s my line '
+
+Understand the problem:
+  Create a method that takes a string as an argument.
+  Replace any special characters with a space and only one space per grouping
+  of special characters.
+  
+Input:
+  A string with non-alphabetic characters
+
+Output:
+  The string with any non-alphabetic characters removed.
+  A single space should occupy each grouping of non-alphabetic characters
+
+Logic:
+  gsub the string, matching a regexp for non-alphabetic characters with a space
+  
