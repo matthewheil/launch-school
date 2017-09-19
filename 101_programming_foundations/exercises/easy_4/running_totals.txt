@@ -1,0 +1,31 @@
+Running Totals
+
+Write a method that takes an Array of numbers, and returns an Array with the 
+same number of elements, and each element has the running total from the 
+original Array.
+
+Examples:
+
+running_total([2, 5, 13]) == [2, 7, 20]
+running_total([14, 11, 7, 15, 20]) == [14, 25, 32, 47, 67]
+running_total([3]) == [3]
+running_total([]) == []
+
+understand the problem:
+  create a method that takes an array of numbers as an argument
+  return a new array
+    the array should have the same number of elements as the original array
+    the elements in the new array should be the running total from the original array
+
+input:
+  array of numbers
+  
+output:
+  a new array of same size with elements that are running totals
+
+logic:
+  create a variable for running_total
+  map the array and return in the block the running total
+    the running total will be running_total += element
+  the map block return should be the method return
+  
