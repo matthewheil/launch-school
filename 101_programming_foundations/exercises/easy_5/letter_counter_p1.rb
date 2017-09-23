@@ -1,10 +1,6 @@
 def word_sizes(words_string)
- words_string.split.each_with_object({}) do |word, counts| 
-   if counts.keys.include?(word.size) 
-     (counts[word.size] += 1)
-   else
-     (counts[word.size] = 1 )
-   end
+ words_string.split.each_with_object(Hash.new(0)) do |word, counts| 
+  (counts[word.size] += 1)
  end
 end
 

@@ -32,4 +32,4 @@ Logic:
   If that size does not exist in the hash, add it to the hash
   If that size does exist, increment that size by 1
   Return the hash
-  Can use each with Object
+  Can use each with object

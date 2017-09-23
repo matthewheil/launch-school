@@ -1,0 +1,38 @@
+ddaaiillyy ddoouubbllee
+
+Write a method that takes a string argument and returns a new string that 
+contains the value of the original string with all consecutive duplicate 
+characters collapsed into a single character. You may not use String#squeeze or 
+String#squeeze!.
+
+Examples:
+
+crunch('ddaaiillyy ddoouubbllee') == 'daily double'
+crunch('4444abcabccba') == '4abcabcba'
+crunch('ggggggggggggggg') == 'g'
+crunch('a') == 'a'
+crunch('') == ''
+
+Understand the problem:
+  Create a method that takes a string as an argument
+  Reduce consecutive alphabetic characters to one instance
+  Return the new string
+
+Input:
+  A string
+
+Output:
+  A string
+
+Logic:
+  create a new string array
+  create a new word array
+  split the string into words
+  for each word, split the word into characters
+    for each character, compare to the last character in new word array
+      if same, next
+      else append to array
+  append the joined new word array to the new string array
+  return the new string array joined
+  
+  
