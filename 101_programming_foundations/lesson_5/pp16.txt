@@ -1,0 +1,18 @@
+Understand the problem:
+  create a method that takes no argument
+  the method creates 32 hexadecimal characters randomly
+  the 32 random characters are separated into 5 sections
+  with the each section containing 8-4-4-4-12 characters
+  
+Input:
+  none
+
+Output:
+  a string
+
+Logic:
+  make an empty string
+  make a methods that returns a string of random hex characters
+    have it take an argument for how long the string should be
+  append the return of the called method to the string and concat dashes between
+  calls
