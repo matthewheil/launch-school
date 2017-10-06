@@ -1,0 +1,26 @@
+Delete vowels
+
+Write a method that takes an array of strings, and returns an array of the same 
+string values, except with the vowels (a, e, i, o, u) removed.
+
+Example:
+
+remove_vowels(%w(abcdefghijklmnopqrstuvwxyz)) == %w(bcdfghjklmnpqrstvwxyz)
+remove_vowels(%w(green YELLOW black white)) == %w(grn YLLW blck wht)
+remove_vowels(%w(ABC AEIOU XYZ)) == ['BC', '', 'XYZ']
+
+Understand the problem:
+  create a method that takes an array of strings as an argument
+  remove all of the vowels (a, e, i, o, u) from the array
+  return the array with the vowels removed
+
+Input:
+  an array
+
+Output:
+  an array
+
+Logic:
+  receive an array with vowels
+  delete all elements in the array that are vowels
+  return this modified array
