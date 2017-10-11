@@ -1,0 +1,49 @@
+Reversed Arrays (Part 1)
+
+Write a method that takes an Array as an argument, and reverses its elements 
+in place; that is, mutate the Array passed into this method. The return value 
+should be the same Array object.
+
+You may not use Array#reverse or Array#reverse!.
+
+Examples:
+
+list = [1,2,3,4]
+result = reverse!(list) # => [4,3,2,1]
+list == [4, 3, 2, 1]
+list.object_id == result.object_id
+
+list = %w(a b c d e)
+reverse!(list) # => ["e", "d", "c", "b", "a"]
+list == ["e", "d", "c", "b", "a"]
+
+list = ['abc']
+reverse!(list) # => ["abc"]
+list == ["abc"]
+
+list = []
+reverse!(list) # => []
+list == []
+
+Understand the problem:
+  create a method that takes an array as an argument
+  mutate the array so that it is reversed
+  return the mutated array
+
+Input:
+  an array
+
+Output:
+  an array
+
+Logic:
+  make a variable for the left and right indices
+  in a loop assign the left index element to the right index element and vice versa
+  increment the left element +1 and the right element -1
+  iterate while the left index is less than the size of the array divided by 2
+    array size = 5          [1, 2, 3, 4, 5]
+      while left index < 2  
+        0, -1 = -1, 0       [5, 2, 3, 4, 1]
+        1, -2 = -2, 1       [5, 4, 3, 2, 1]
+        done
+        
