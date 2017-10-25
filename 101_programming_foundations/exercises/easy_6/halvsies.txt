@@ -1,0 +1,55 @@
+Halvsies
+
+Write a method that takes an Array as an argument, and returns two Arrays 
+that contain the first half and second half of the original Array, 
+respectively. If the original array contains an odd number of elements, 
+the middle element should be placed in the first half Array.
+
+Examples:
+
+halvsies([1, 2, 3, 4]) == [[1, 2], [3, 4]]
+halvsies([1, 5, 2, 4, 3]) == [[1, 5, 2], [4, 3]]
+halvsies([5]) == [[5], []]
+halvsies([]) == [[], []]
+
+Understand the problem:
+  create a method that takes an array as an argument
+  return two arrays 
+    the first array is the first half of the array argument
+    the second array is the second half of the array argument
+    if the array argument is odd
+      the middle element should be placed in the first array
+
+Input:
+  an array
+
+Output:
+  two arrays
+
+Logic:
+  1st array
+  2nd array
+  given array.size
+  count = 0
+  if array.size is even
+      while count <= size/2
+        1st array[count] = array[count]
+        count+1
+      end
+      while count <= size
+        2nd array[count] = array[count]
+        count+1
+      end
+    else
+      while count <= size/2 + 1
+      1st array[count] = array[count]
+        count+1
+      end
+      while count <= size
+        2nd array[count] = array[count]
+        count+1
+      end
+    end
+  end
+return [arr1, arr2]
+  
