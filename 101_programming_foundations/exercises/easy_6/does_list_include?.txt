@@ -1,0 +1,31 @@
+Does My List Include This?
+
+Write a method named include? that takes an Array and a search value as 
+arguments. This method should return true if the search value is in the array, 
+false if it is not. You may not use the Array#include? method in your solution.
+
+include?([1,2,3,4,5], 3) == true
+include?([1,2,3,4,5], 6) == false
+include?([], 3) == false
+include?([nil], nil) == true
+include?([], nil) == false
+
+Understand the problem:
+  given an array and a search value, return true if the search value is in the 
+  array and false if it is not. Cannot use Array#include? method.
+
+Input:
+  an array and a search value
+
+Output:
+  true if the search value is in the array
+  false if it is not
+
+Logic:
+  assign the first element to a new array
+  count = 1
+  using a loop
+    return true if find on the new array using arg_array[count]
+    count += 1
+    break if count >= arg_array.size
+  false
