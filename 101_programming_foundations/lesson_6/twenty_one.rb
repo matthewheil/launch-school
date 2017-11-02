@@ -1,11 +1,11 @@
-# make a hash table for the suits and faces where the key is the element of the
-# constant and the value is the english word (e.g. ['C', 'K'] would be
-# {'C' => 'Clubs', 'K' => 'King'}). This will allow changing the line that
-# puts the player's and dealer's hand so that it reads in english instead of 
-# displaying an array.
-
 SUITS = %w[C D S H]
 FACES = %w[2 3 4 5 6 7 8 9 10 J Q K A]
+CONVERT_TO_ENGLISH = {
+  'C' => 'Clubs', 'D' => 'Diamonds', 'S' => 'Spades', 'H' => 'Hearts',
+  '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7',
+  '8' => '8', '9' => '9', '10' => '10', 'J' => 'Jack', 'Q' => 'Queen',
+  'K' => 'King', 'A' => 'Ace'
+}
 
 def initialize_deck
   deck = []
@@ -82,13 +82,32 @@ def display_winner(winner)
   end
 end
 
+def hand_in_english(hand)
+  # [['S', '2'], ['D', '3'], ['C', 'K']] is
+  # "2 of Spades, 3 of Diamonds, and King of Clubs"
+  start = ''
+  finish = ''
+  hand.each do |card|
+    if hand.last == card
+      finish = "and #{CONVERT_TO_ENGLISH[card[1]]} of \
+#{CONVERT_TO_ENGLISH[card[0]]}"
+    else
+      start.concat("#{CONVERT_TO_ENGLISH[card[1]]} of \
+#{CONVERT_TO_ENGLISH[card[0]]}, ")
+    end
+  end
+  start.concat(finish)
+end
+
 loop do # main loop
   loop do # game start
     deck = initialize_deck
     player_hand, dealer_hand = deal(deck)
 
-    puts "Your hand is #{player_hand} with a total of #{total(player_hand)}."
-    puts "Dealer's hand is #{dealer_hand[0]} and one hidden card."
+    puts "Your hand is a #{hand_in_english(player_hand)} with a total \
+of #{total(player_hand)}."
+    puts "Dealer's hand is #{CONVERT_TO_ENGLISH[dealer_hand[0][1]]} of \
+#{CONVERT_TO_ENGLISH[dealer_hand[0][0]]} and one hidden card."
 
     # player_turn
     answer = nil
@@ -101,17 +120,18 @@ loop do # main loop
       end
       if answer == 'hit'
         player_hand << hit(deck)
-        puts "You were dealt #{player_hand.last}."
+        puts "\nYou were dealt a #{CONVERT_TO_ENGLISH[player_hand.last[1]]} of \
+#{CONVERT_TO_ENGLISH[player_hand.last[0]]}."
         puts "Your hand total is #{total(player_hand)}."
       end
       break if answer == 'stay' || busted?(player_hand)
     end
 
     if busted?(player_hand)
-      puts "Bust! You LOST!"
+      puts "\nBust! You LOST!"
       break
     else
-      puts "You chose to stay!"
+      puts "\nYou chose to stay!"
     end
 
     # dealer_turn
@@ -122,17 +142,17 @@ loop do # main loop
     end
 
     if busted?(dealer_hand)
-      puts "The dealer busted! You WON!"
+      puts "\nThe dealer busted! You WON!"
       break
     else
-      puts "Dealer chose to stay!"
+      puts "\nDealer chose to stay!"
     end
 
     # calculate who won
     winner = who_won?(player_hand, dealer_hand)
 
     # declare the winner
-    puts "You have #{total(player_hand)}."
+    puts "\nYou have #{total(player_hand)}."
     puts "The dealer has #{total(dealer_hand)}."
     display_winner(winner)
     break
@@ -146,6 +166,7 @@ loop do # main loop
     break if answer == 'y' || answer == 'n'
     puts "That was an invalid choice."
   end
+  system 'clear'
   break if answer == 'n'
 end
 
