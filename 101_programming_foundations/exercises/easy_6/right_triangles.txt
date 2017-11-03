@@ -1,0 +1,47 @@
+Write a method that takes a positive integer, n, as an argument, and displays a 
+right triangle whose sides each have n stars. The hypotenuse of the triangle 
+(the diagonal side in the images below) should have one end at the lower-left 
+of the triangle, and the other end at the upper-right.
+
+Examples:
+
+triangle(5)
+
+    *
+   **
+  ***
+ ****
+*****
+triangle(9)
+
+        *
+       **
+      ***
+     ****
+    *****
+   ******
+  *******
+ ********
+*********
+
+Understand the problem:
+  Create a method that takes a positive integer as input.
+  Outputs a right triangle made of *'s
+
+Input:
+  a positive integer
+
+Output:
+  a right triangle made of *'s
+
+Logic:
+  n = positive integer as input
+  output will have n lines
+  x = n - 1
+  loop
+    line will x spaces and n - x *'s
+    break if x == 0
+    x -= 1
+  end
+  first line will be x spaces and n - x *'s
+  the last line will be n *'s
