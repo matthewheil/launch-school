@@ -1,0 +1,34 @@
+Combine Two Lists
+
+Write a method that combines two Arrays passed in as arguments, and returns a 
+new Array that contains all elements from both Array arguments, with the 
+elements taken in alternation.
+
+You may assume that both input Arrays are non-empty, and that they have the 
+same number of elements.
+
+Example:
+
+interleave([1, 2, 3], ['a', 'b', 'c']) == [1, 'a', 2, 'b', 3, 'c']
+
+Understand the problem:
+  create a method that takes two arrays as arguments
+  combine the arrays interleaving the elements into the new array
+  assume the input arrays are non-empty and have the same size
+
+Input:
+  two arrays that are non-empty and equal in size
+
+Output:
+  one array that is a combination of the two input arrays
+  the output array should have alternating elements from each input array
+
+Logic:
+  new_array = []
+  count = 0
+  loop do
+    new_array << input_arr1[count]
+    new_array << input_arr2[count]
+    count += 1
+    break if count >= input_arr1.size
+  end
