@@ -1,0 +1,35 @@
+Write a method that takes a string, and then returns a hash that contains 3 
+entries: one represents the number of characters in the string that are 
+lowercase letters, one the number of characters that are uppercase letters, 
+and one the number of characters that are neither.
+
+Examples
+
+letter_case_count('abCdef 123') == { lowercase: 5, uppercase: 1, neither: 4 }
+letter_case_count('AbCd +Ef') == { lowercase: 3, uppercase: 3, neither: 2 }
+letter_case_count('123') == { lowercase: 0, uppercase: 0, neither: 3 }
+letter_case_count('') == { lowercase: 0, uppercase: 0, neither: 0 }
+
+Understand the problem: 
+  Create a method that takes a string as an argument
+  the method returns a hash with three keys:
+    the number of lowercase letters in the string
+    the number of uppercase letters in the string
+    the number of characters that are neither
+
+Input:
+  a string
+
+Output:
+  a hash
+
+Logic:
+  create two constants, all lowercase letters and all uppercase letters
+  iterate through the string and 
+  compare against all lowercase
+    if matched, increment the first key
+  compare against all uppercase
+    matched, increment the 2nd key
+  neither
+    increment the third key
+  return the hash

@@ -1,0 +1,29 @@
+Write a method that takes a single String argument and returns a new string 
+that contains the original value of the argument with the first character of 
+every word capitalized and all other letters lowercase.
+
+You may assume that words are any sequence of non-blank characters.
+
+Examples
+
+word_cap('four score and seven') == 'Four Score And Seven'
+word_cap('the javaScript language') == 'The Javascript Language'
+word_cap('this is a "quoted" word') == 'This Is A "quoted" Word'
+
+Understand the problem:
+  create a method that takes a string as an argument
+  the method returns the string where the first character of every word is
+  capitalized and all others are lowercase
+
+Input:
+  a string
+
+Output:
+  a string
+
+Logic:
+  split the string
+  iterate over the words
+    for each word
+    do character assignment for the first letter as capitalized
+  return the string

@@ -1,0 +1,31 @@
+Write a method that takes a string as an argument and returns a new string in 
+which every uppercase letter is replaced by its lowercase version, and every 
+lowercase letter by its uppercase version. All other characters should be 
+unchanged.
+
+You may not use String#swapcase; write your own version of this method.
+
+Example:
+
+swapcase('CamelCase') == 'cAMELcASE'
+swapcase('Tonight on XYZ-TV') == 'tONIGHT ON xyz-tv'
+
+Understand the problem:
+  create a method that takes a string as an argument
+  return the string where the characters that were uppercase are now lowercase
+  and vice versa
+
+Input:
+  a string
+
+Output:
+  a string
+
+Logic:
+  create two constants: uppercase letters, lowercase letters
+  iterate throught the words of the string
+  for each word, map the characters
+    compare the character with uppercase, swap if true
+    otherwise compare the character with lowercase, swap if true
+    else return the character
+  return the joined words
