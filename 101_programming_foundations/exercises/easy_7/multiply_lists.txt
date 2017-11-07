@@ -1,0 +1,28 @@
+Write a method that takes two Array arguments in which each Array contains a 
+list of numbers, and returns a new Array that contains the product of each pair
+of numbers from the arguments that have the same index. You may assume that the 
+arguments contain the same number of elements.
+
+Examples:
+
+multiply_list([3, 5, 7], [9, 10, 11]) == [27, 50, 77]
+
+Understand the problem:
+  create a method that takes two arrays of numbers (of the same size) as arguments
+  return a new array whose elements are the product of the elements at the same index
+  the the original two arrays
+
+Input:
+  two arrays
+
+Output:
+  one array
+
+Logic:
+  create a result array
+  count = 0
+  loop
+    result << arr1[count] * arr2[count]
+    break if count >= arr1.size
+    increment count
+  return result
