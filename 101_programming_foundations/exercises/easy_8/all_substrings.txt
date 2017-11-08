@@ -1,0 +1,29 @@
+Write a method that returns a list of all substrings of a string. The returned 
+list should be ordered by where in the string the substring begins. This means 
+that all substrings that start at position 0 should come first, then all 
+substrings that start at position 1, and so on. Since multiple substrings 
+will occur at each position, the substrings at a given position should be 
+returned in order from shortest to longest.
+
+You may (and should) use the substrings_at_start method you wrote in the 
+previous exercise:
+
+Examples:
+
+substrings('abcde') == [
+  'a', 'ab', 'abc', 'abcd', 'abcde', 
+  'b', 'bc', 'bcd', 'bcde',
+  'c', 'cd', 'cde',
+  'd', 'de',
+  'e'
+]
+
+Understand the problem:
+  Create a method that takes a string as input
+    create an empty array to store the substrings
+    loop up to the size of the string
+      for each loop call the substrings_at_start method
+        modify the method to pass in a start_at value
+        use the current count of the loop for the start
+      store the return into the substrings array
+  return the substrings array

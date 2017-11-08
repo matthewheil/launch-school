@@ -1,0 +1,24 @@
+Write a method that returns a list of all substrings of a string that start at 
+the beginning of the original string. The return value should be arranged in 
+order from shortest to longest substring.
+
+Examples:
+
+substrings_at_start('abc') == ['a', 'ab', 'abc']
+substrings_at_start('a') == ['a']
+substrings_at_start('xyzzy') == ['x', 'xy', 'xyz', 'xyzz', 'xyzzy']
+
+Understand the problem:
+  create a method that takes a string as input
+    append to an array each substring in the given string
+  return the array sorted from shortest to longest
+
+Logic:
+  create an emtpy array to store the substrings
+  count = 0
+  loop do
+    array << string[0..count]
+    count += 1
+    break if count >= string.size
+  end
+  array.sort { |a, b| a.size <=> b.size }
