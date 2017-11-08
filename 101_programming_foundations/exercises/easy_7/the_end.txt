@@ -1,0 +1,43 @@
+Write a method that returns the next to last word in the String passed to it as 
+an argument.
+
+Words are any sequence of non-blank characters.
+
+You may assume that the input String will always contain at least two words.
+
+Examples:
+
+penultimate('last word') == 'last'
+penultimate('Launch School is great!') == 'is'
+
+Understand the problem:
+  create a method that takes a string of at least two words as arguments
+    words are any sequence of non-blank characters
+  return the second to last word in the string
+
+input:
+  a string
+
+output:
+  a string
+
+Logic:
+  split the string and return the -2 element
+  
+Extra
+Understand the problem:
+  create a method that takes a string of words as an argument
+  return the word in the middle
+
+input:
+  a string
+
+output:
+  a string
+
+Logic:
+ split the string into an array
+ if the array size is greater than 1, reference the [arr.size/2] element
+ if the array size is 1, return arr[0]
+ else return that the string is empty
+  an even number of words will return the element to the right
