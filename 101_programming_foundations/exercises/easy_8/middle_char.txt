@@ -1,0 +1,21 @@
+Write a method that takes a non-empty string argument, and returns the middle 
+character or characters of the argument. If the argument has an odd length, 
+you should return exactly one character. If the argument has an even length, 
+you should return exactly two characters.
+
+Examples:
+
+center_of('I love ruby') == 'e'
+center_of('Launch School') == ' '
+center_of('Launch') == 'un'
+center_of('Launchschool') == 'hs'
+center_of('x') == 'x'
+
+Understand the problem:
+  create a method that takes a non-empty string as an argument
+  if the string has an odd length, return the middle char
+  else return the middle two chars
+  
+Logic:
+  if odd, string.chars.length/2 is the index of the middle char
+  else, string.chars.length/2 is the second of the middle. that one and the one before it
