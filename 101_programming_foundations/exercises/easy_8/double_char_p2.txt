@@ -1,0 +1,24 @@
+Write a method that takes a string, and returns a new string in which every 
+consonant character is doubled. Vowels (a,e,i,o,u), digits, punctuation, 
+and whitespace should not be doubled.
+
+Examples:
+
+double_consonants('String') == "SSttrrinngg"
+double_consonants("Hello-World!") == "HHellllo-WWorrlldd!"
+double_consonants("July 4th") == "JJullyy 4tthh"
+double_consonants('') == ""
+
+Understand the problem:
+  create a method that takes a string as an argument
+  returns a new string
+    new string has doubled consonant characters. all others are not doubled
+    
+Logic:
+  create a constant that is an array of only consonants
+  create a new string that is blank
+  iterate through the chars in string
+    if char.downcase is included in the constant
+      concat char * 2
+    else
+      concat char

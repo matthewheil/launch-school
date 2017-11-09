@@ -1,0 +1,17 @@
+Write a method that takes a string, and returns a new string in which every 
+character is doubled.
+
+Examples:
+
+repeater('Hello') == "HHeelllloo"
+repeater("Good job!") == "GGoooodd  jjoobb!!"
+repeater('') == ''
+
+Understand the problem:
+  create a method that takes a string as an argument
+    for the string, double each character
+  return the new string
+
+Logic:
+  create a new string that is blank
+  for each char in string, concat it to the new string * 2

@@ -1,0 +1,17 @@
+Write a method that takes a positive integer as an argument and returns that 
+number with its digits reversed. 
+
+Examples:
+
+reversed_number(12345) == 54321
+reversed_number(12213) == 31221
+reversed_number(456) == 654
+reversed_number(12000) == 21 # Note that zeros get dropped!
+reversed_number(1) == 1
+
+Understand the problem:
+  create a method that takes an integer as an argument
+  return the number with the digits reversed (0's get dropped)
+
+Logic:
+  convert the number to a string, call reverse, convert to a number
