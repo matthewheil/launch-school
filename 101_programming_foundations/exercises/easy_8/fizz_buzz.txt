@@ -1,0 +1,39 @@
+Write a method that takes two arguments: the first is the starting number, and 
+the second is the ending number. Print out all numbers between the two numbers,
+except if a number is divisible by 3, print "Fizz", if a number is divisible by 
+5, print "Buzz", and finally if a number is divisible by 3 and 5, print 
+"FizzBuzz".
+
+Example:
+
+fizzbuzz(1, 15) # -> 1, 2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, Buzz, 11, Fizz, 13,
+14, FizzBuzz
+
+Understand the problem:
+  create a method that takes two numbers as arguments
+  the first number is the starting number
+  the second number is the ending number
+  print out all numbers from the starting number to the ending number
+    if the number is divisible by 3, print "Fizz" instead
+    if the number is divisible by 5, print "Buzz" instead
+    if the number is divisible by 3 and 5, print "FizzBuzz" instead
+
+Logic:
+  create an array that stores all of the numbers ( array =* (start..end) )
+  iterate through the numbers
+    if div 3 and div 5
+      print "FizzBuzz"
+    if div 5
+      ...
+    if div 3
+      ...
+    else
+      print number
+  
+  create an array
+  current = start
+  loop
+    if ... 
+    break if current >= end
+    current += 1
+  
