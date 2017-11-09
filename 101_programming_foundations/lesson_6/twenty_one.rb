@@ -153,7 +153,6 @@ of #{total(player_hand)}."
     end
 
     # dealer_turn
-    answer = nil
     loop do
       break if total(dealer_hand) >= DEALER_STAY || busted?(dealer_hand)
       dealer_hand << hit(deck)
