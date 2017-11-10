@@ -1,0 +1,20 @@
+Write a method which takes a grocery list (array) of fruits with quantities 
+and converts it into an array of the correct number of each fruit.
+
+Example:
+
+buy_fruit([["apples", 3], ["orange", 1], ["bananas", 2]]) ==
+  ["apples", "apples", "apples", "orange", "bananas","bananas"]
+  
+Understand the problem:
+  create a method that takes an array as an argument
+    the array contains sub arrays
+      each sub array is a fruit with quantities
+  return an array that has the fruit names listed "quantities" times
+
+Logic:
+  create a new array
+  iterate the array for each element
+    sub_array[1].times do
+      new_array << sub_array[0]
+  return new_array

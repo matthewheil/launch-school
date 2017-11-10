@@ -1,0 +1,18 @@
+Write a method that takes a number as an argument. If the argument is a 
+positive number, return the negative of that number. If the number is 0 or 
+negative, return the original number.
+
+Examples;
+
+negative(5) == -5
+negative(-3) == -3
+negative(0) == 0      # There's no such thing as -0 in ruby
+
+Understand the problem:
+  create a method that takes a number as an argument
+  if the argument is a positive number, return the negative of that number
+  if the number is negative or 0, return the original number
+
+Logic:
+  if the number > 0 then return number * -1
+  else return number

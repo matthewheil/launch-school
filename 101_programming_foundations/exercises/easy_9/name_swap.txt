@@ -1,0 +1,17 @@
+Write a method that takes a first name, a space, and a last name passed as a 
+single String argument, and returns a string that contains the last name, 
+a comma, a space, and the first name.
+
+Examples
+
+swap_name('Joe Roberts') == 'Roberts, Joe'
+
+Understand the problem:
+  create a method that takes a string as an argument
+    the string is a first name, space, last name as a single string
+  return a string that is "last name, first name"
+
+Logic:
+  split the string
+  reverse it
+  join with a ", "
