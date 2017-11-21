@@ -16,21 +16,20 @@ def get_sentences(file_name)
   sentences = []
   File.read(file_name).scan(/([^.!?]+)/).each do |array|
     array.each do |sentence|
-      sentences << sentence.split("\n").join(' ')
+      sentences << sentence.split(/[\n\r]+/).join(' ').strip
     end
   end
   sentences
 end
 
 def longest_sentence(file_name)
-  longest = ''
-  sentences = get_sentences(file_name)
-  sentences.each do |sentence|
-    longest = sentence if sentence.split.size > longest.split.size
-  end
+# sentences = get_sentences(file_name)
+  sentences = File.read(file_name).split(/\.|\?|\!/)
+  longest = sentences.max_by { |sentence| sentence.split.size }
+  longest = longest.split(/[\n\r]+/).join(' ').strip
   num_words = longest.split.size
-  puts "The longest sentence in the given file is #{num_words} words."
-  p longest
+  puts "=> The longest sentence in the given file is #{num_words} words."
+  puts longest
 end
 
 longest_sentence('long_sent_file.txt')
