@@ -1,4 +1,4 @@
-require 'pry'
+# show the dealer hitting and choosing to stay with a slight pause in between
 
 module Messageable
   def msg(message)
@@ -7,7 +7,7 @@ module Messageable
   end
 
   def clear
-    system 'clear'
+    system('clear') || system('cls')
   end
 end
 
@@ -77,7 +77,7 @@ class Participant
   def display_bust_message
     clear
     display_hand
-    msg "#{name} BUSTED!!!"
+    msg "#{name} hit and BUSTED!!!"
   end
 
   def display_hand
@@ -87,8 +87,16 @@ class Participant
 
   def display_stay_message
     clear
-    display_hand_total unless self.class == Dealer
-    msg "#{name} chose to stay!"
+    display_hand unless self.class == Dealer
+    if hand.size > 2
+      msg "#{name} hit and then chose to stay!"
+    else
+      msg "#{name} chose to stay!"
+    end
+    unless self.class == Dealer
+      puts "Press enter for the dealer to take their turn."
+      gets.chomp
+    end
   end
 
   def to_s
@@ -294,8 +302,7 @@ class Game
 
   def show_result
     @player.display_hand
-    msg "#{@dealer.name}'s hand is worth #{@dealer.total}:\n\t"\
-        "#{@dealer.hand.join(', ')}"
+    @dealer.display_hand
     case @dealer.total <=> @player.total
     when 1 then msg "#{@dealer.name} won!"
     when 0 then msg "It's a tie!"
