@@ -1,190 +1,307 @@
-SUITS = %w[C D S H]
-FACES = %w[2 3 4 5 6 7 8 9 10 J Q K A]
-DEALER_STAY = 17
-BUST_AT = 21
-CONVERT_TO_ENGLISH = {
-  'C' => 'Clubs', 'D' => 'Diamonds', 'S' => 'Spades', 'H' => 'Hearts',
-  '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7',
-  '8' => '8', '9' => '9', '10' => '10', 'J' => 'Jack', 'Q' => 'Queen',
-  'K' => 'King', 'A' => 'Ace'
-}
+require 'pry'
 
-def initialize_deck
-  deck = []
-  SUITS.each do |suit|
-    FACES.each do |face|
-      deck << [suit, face]
-    end
+module Messageable
+  def msg(message)
+    puts message.to_s
+    puts ""
   end
 
-  deck
+  def clear
+    system 'clear'
+  end
 end
 
-# rubocop:disable Style/ConditionalAssignment
-def total(cards)
-  # cards = [['H', '3'], ['S', 'Q'], ... ]
-  values = cards.map { |card| card[1] }
+module Hand
+  include Messageable
 
-  sum = 0
-  values.each do |value|
-    if value == "A"
-      sum += 11
-    elsif value.to_i == 0 # J, Q, K
-      sum += 10
+  BUST_AT = 21
+  LOW_ACE = 1
+  HIGH_ACE = 11
+  FACE_CARD = 10
+
+  def hit(deck)
+    deck.deal_one(self)
+  end
+
+  def busted?
+    total > BUST_AT
+  end
+
+  def calculate_value(card_face)
+    if card_face == "A" # card is an ace
+      total < HIGH_ACE ? HIGH_ACE : LOW_ACE
+    elsif card_face.to_i == 0 # J, Q, K
+      FACE_CARD
     else
-      sum += value.to_i
+      card_face.to_i
     end
   end
 
-  # correct for Aces
-  values.select { |value| value == "A" }.count.times do
-    sum -= 10 if sum > 21
+  def increment_total
+    card_face = hand.last.value[1] # last dealt card's value (1-10 or J-A)
+    self.total += calculate_value(card_face)
+    correct_for_aces if card_face == 'A'
   end
 
-  sum
-end
-# rubocop:enable Style/ConditionalAssignment
-
-def deal(deck)
-  player_hand = []
-  dealer_hand = []
-  player_hand << deck.sample
-  deck.delete(player_hand[0])
-  player_hand << deck.sample
-  deck.delete(player_hand[1])
-  dealer_hand << deck.sample
-  deck.delete(dealer_hand[0])
-  dealer_hand << deck.sample
-  deck.delete(dealer_hand[1])
-
-  return player_hand, dealer_hand
-end
-
-def hit(deck)
-  new_card = deck.sample
-  deck.delete(new_card)
-  new_card
-end
-
-def busted?(hand)
-  total(hand) > BUST_AT
-end
-
-def who_won?(player_hand, dealer_hand)
-  if total(player_hand) > total(dealer_hand)
-    "player"
-  elsif total(dealer_hand) > total(player_hand)
-    "dealer"
-  else
-    "tie"
-  end
-end
-
-def display_winner(winner)
-  if winner == 'player'
-    puts "You won!"
-  elsif winner == 'dealer'
-    puts "The dealer won!"
-  else
-    puts "It was a tie!"
-  end
-end
-
-def hand_in_english(hand)
-  # [['S', '2'], ['D', '3'], ['C', 'K']] is
-  # "2 of Spades, 3 of Diamonds, and King of Clubs"
-  start = ''
-  finish = ''
-  hand.each do |card|
-    if hand.last == card
-      finish = "and #{CONVERT_TO_ENGLISH[card[1]]} of \
-#{CONVERT_TO_ENGLISH[card[0]]}"
-    else
-      start.concat("#{CONVERT_TO_ENGLISH[card[1]]} of \
-#{CONVERT_TO_ENGLISH[card[0]]}, ")
+  def correct_for_aces
+    hand.select(&:ace?).count.times do
+      break if total <= 21
+      self.total -= 10
     end
   end
-  start.concat(finish)
 end
 
-def declare_final_totals(player_hand, dealer_hand)
-  puts "\nYou have: #{hand_in_english(player_hand)} for a total of \
-#{total(player_hand)}."
-  puts "The dealer has: #{hand_in_english(dealer_hand)} for a total of \
-#{total(dealer_hand)}."
+class Participant
+  include Messageable
+  include Hand
+
+  attr_reader :name
+  attr_accessor :total, :hand
+
+  def initialize(name='Dealer')
+    @name = name
+    @hand = []
+    @total = 0
+  end
+
+  def display_hand_total
+    msg "#{name}'s total is:\n\t#{total}"
+  end
+
+  def display_hit_message
+    clear
+    msg "#{name} chose to hit and was dealt:\n\t#{hand.last}"
+    display_hand_total unless self.class == Dealer
+  end
+
+  def display_bust_message
+    clear
+    display_hand
+    msg "#{name} BUSTED!!!"
+  end
+
+  def display_hand
+    msg "#{name}'s hand is worth #{total}:\n\t"\
+        "#{hand.join(', ')}"
+  end
+
+  def display_stay_message
+    clear
+    display_hand_total unless self.class == Dealer
+    msg "#{name} chose to stay!"
+  end
+
+  def to_s
+    @name
+  end
 end
 
-loop do # main loop
-  loop do # game start
-    deck = initialize_deck
-    player_hand, dealer_hand = deal(deck)
+class Player < Participant
+  attr_reader :choice
 
-    puts "Your hand is: #{hand_in_english(player_hand)} for a total \
-of #{total(player_hand)}."
-    puts "Dealer's hand is: #{CONVERT_TO_ENGLISH[dealer_hand[0][1]]} of \
-#{CONVERT_TO_ENGLISH[dealer_hand[0][0]]} and one hidden card."
+  def initialize
+    @name = set_name
+    super(name)
+    @choice = ''
+  end
 
-    # player_turn
-    answer = nil
+  def set_name
+    clear
+    name = ''
     loop do
-      loop do
-        puts "hit or stay?"
-        answer = gets.chomp.downcase
-        break if answer == 'hit' || answer == 'stay'
-        puts "please answer 'hit' or 'stay'"
+      msg "Please enter your name: "
+      name = gets.chomp.to_s.split.map(&:capitalize).join(' ')
+      break unless name.empty?
+    end
+    name
+  end
+
+  def hit_or_stay?
+    puts "Do you want to hit or stay?"
+    loop do
+      @choice = gets.chomp.downcase
+      break if @choice == 'hit' || @choice == 'stay'
+      puts "Please answer 'hit' or 'stay'"
+    end
+  end
+end
+
+class Dealer < Participant
+  DEALER_STAY = 17
+
+  def hit_or_stay?
+    total >= DEALER_STAY ? 'stay' : 'hit'
+  end
+end
+
+class Deck
+  SUITS = %w[C D S H]
+  FACES = %w[2 3 4 5 6 7 8 9 10 J Q K A]
+  NUMBER_OF_DECKS = 6
+
+  def initialize
+    @deck = []
+    NUMBER_OF_DECKS.times do
+      SUITS.each do |suit|
+        FACES.each do |face|
+          @deck << Card.new([suit, face])
+        end
+      end
+    end
+  end
+
+  def initial_deal(player, dealer)
+    [player, dealer].each { |participant| 2.times { deal_one(participant) } }
+  end
+
+  def deal_one(participant)
+    participant.hand << @deck.sample
+    @deck.delete(participant.hand.last)
+    participant.increment_total
+  end
+
+  def size
+    @deck.size
+  end
+
+  def to_s
+    @deck
+  end
+end
+
+class Card
+  CONVERT_TO_ENGLISH = {
+    'C' => 'Clubs', 'D' => 'Diamonds', 'S' => 'Spades', 'H' => 'Hearts',
+    '2' => '2', '3' => '3', '4' => '4', '5' => '5', '6' => '6', '7' => '7',
+    '8' => '8', '9' => '9', '10' => '10', 'J' => 'Jack', 'Q' => 'Queen',
+    'K' => 'King', 'A' => 'Ace'
+  }
+
+  attr_reader :value
+
+  def initialize(suit_and_face_array)
+    @value = suit_and_face_array
+  end
+
+  def ace?
+    @value[1] == 'A'
+  end
+
+  def to_s
+    "#{CONVERT_TO_ENGLISH[@value[1]]} of #{CONVERT_TO_ENGLISH[@value[0]]}"
+  end
+end
+
+class Game
+  include Messageable
+
+  def initialize
+    @deck = Deck.new
+    @player = Player.new
+    @dealer = Dealer.new
+  end
+
+  def start
+    display_welcome_message
+    loop do
+      1.times do
+        deal_initial_cards
+        show_initial_cards
+        player_turn
+        break if @player.busted?
+        dealer_turn
+        break if @dealer.busted?
+        show_result
       end
 
-      if answer == 'hit'
-        player_hand << hit(deck)
-        puts "\nYou were dealt: #{CONVERT_TO_ENGLISH[player_hand.last[1]]} of \
-#{CONVERT_TO_ENGLISH[player_hand.last[0]]}."
-        puts "Your hand total is #{total(player_hand)}."
-      end
-
-      break if answer == 'stay' || busted?(player_hand)
+      break unless play_again?
+      reset
     end
 
-    if busted?(player_hand)
-      puts "\nBust! You LOST!"
-      declare_final_totals(player_hand, dealer_hand)
-      break
-    else
-      puts "\nYou chose to stay!"
-    end
+    display_goodbye_message
+  end
 
-    # dealer_turn
+  def display_welcome_message
+    clear
+    msg "Welcome to black jack, #{@player.name}!"
+  end
+
+  def display_goodbye_message
+    clear
+    msg "Thanks for playing black jack, #{@player.name}! Goodbye."
+  end
+
+  def play_again?
+    puts "Would you like to play again? (y/n)"
+    answer = ''
     loop do
-      break if total(dealer_hand) >= DEALER_STAY || busted?(dealer_hand)
-      dealer_hand << hit(deck)
+      answer = gets.chomp.downcase
+      break if %w[y n].include?(answer)
+      puts "Invalid choice. Play again? (y/n)"
+    end
+    answer == 'y'
+  end
+
+  def reset
+    @player.total = 0
+    @dealer.total = 0
+    @player.hand = []
+    @dealer.hand = []
+    @deck = Deck.new if @deck.size < 52
+    clear
+  end
+
+  def deal_initial_cards
+    msg "The cards have been dealt."
+    @deck.initial_deal(@player, @dealer)
+  end
+
+  def show_initial_cards
+    msg "Your hand:\n\t#{@player.hand[0]}\n\t#{@player.hand[1]}"
+    msg "Dealer's hand:\n\t#{@dealer.hand[0]}\n\tHidden card"
+  end
+
+  def player_turn
+    msg "Your card total is #{@player.total}."
+    loop do
+      @player.hit_or_stay?
+      clear
+      @player.hit(@deck) if @player.choice == 'hit'
+      break if @player.choice == 'stay' || @player.busted?
+      @player.display_hand
     end
 
-    if busted?(dealer_hand)
-      puts "\nThe dealer busted! You WON!"
-      declare_final_totals(player_hand, dealer_hand)
-      break
+    if @player.busted?
+      @player.display_bust_message
     else
-      puts "\nDealer chose to stay!"
+      @player.display_stay_message
+    end
+  end
+
+  def dealer_turn
+    loop do
+      break if @dealer.total >= 17
+      @dealer.hit(@deck)
+      @dealer.display_hand
     end
 
-    # calculate who won
-    winner = who_won?(player_hand, dealer_hand)
-
-    # declare the winner
-    declare_final_totals(player_hand, dealer_hand)
-    display_winner(winner)
-    break
+    if @dealer.busted?
+      @dealer.display_bust_message
+    else
+      @dealer.display_stay_message
+    end
   end
 
-  # play again?
-  answer = nil
-  loop do
-    puts "\nWould you like to play again? (y/n)"
-    answer = gets.chomp.downcase[0]
-    break if answer == 'y' || answer == 'n'
-    puts "That was an invalid choice."
+  def show_result
+    @player.display_hand
+    msg "#{@dealer.name}'s hand is worth #{@dealer.total}:\n\t"\
+        "#{@dealer.hand.join(', ')}"
+    case @dealer.total <=> @player.total
+    when 1 then msg "#{@dealer.name} won!"
+    when 0 then msg "It's a tie!"
+    when -1 then msg "#{@player.name} won!"
+    end
   end
-  system 'clear'
-  break if answer == 'n'
 end
 
-puts "Thanks for playing!"
+Game.new.start
