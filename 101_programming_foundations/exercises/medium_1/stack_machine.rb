@@ -44,7 +44,7 @@ def minilang(commands)
       when 'MOD' then register = MOD(register, stack)
       when 'POP' then register = POP(register, stack)
       when 'PRINT' then PRINT(register)
-      else 
+      else
         raise StandardError, "Invalid Command" unless /^-?\d+$/.match(command)
         register = command.to_i
       end
