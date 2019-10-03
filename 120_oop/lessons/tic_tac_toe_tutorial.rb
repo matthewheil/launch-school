@@ -1,3 +1,5 @@
+require 'pry'
+
 module Clearable
   def clear
     system 'clear'
@@ -20,7 +22,7 @@ class Score
   INITIAL_SCORE = 0
 
   def initialize
-    @score = INITIAL_SCORE
+    reset
   end
 
   def reached?
@@ -41,6 +43,7 @@ class Score
 end
 
 class Board
+  STRATEGIC_SQUARE = 5
   WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] + # rows
                   [[1, 4, 7], [2, 5, 8], [3, 6, 9]] + # columns
                   [[1, 5, 9], [3, 5, 7]]              # diagonals
@@ -52,6 +55,10 @@ class Board
 
   def []=(key, marker)
     @squares[key].marker = marker
+  end
+
+  def [](key)
+    @squares[key].marker
   end
 
   def empty_keys
@@ -129,6 +136,21 @@ class Player
   def initialize
     @score = Score.new
   end
+
+  def can_win?(board)
+    choose_winning_square(board) # returns nil if no winnng square is found
+  end
+
+  def choose_winning_square(board)
+    square = nil
+    Board::WINNING_LINES.each do |line|
+      markers = [board[line[0]], board[line[1]], board[line[2]]]
+      if markers.count(self.marker) == 2 && markers.count(' ') == 1
+        square = line.select { |sqr| board[sqr] == ' ' }.first
+      end
+    end
+    square
+  end
 end
 
 class Computer < Player
@@ -155,7 +177,7 @@ class Human < Player
 
   def choose_name
     msg "Please enter your name: "
-    @name = gets.chomp.to_s.split.map(&:capitalize).join(' ')
+    @name = gets.chomp.split.map(&:capitalize).join(' ')
   end
 
   def choose_marker
@@ -273,8 +295,16 @@ class TTTGame
     @current_player = computer.marker
   end
 
-  def computer_moves
-    board[board.empty_keys.sample] = computer.marker
+  def computer_moves # offense, defense, pick square 5, or pick random
+    if computer.can_win?(board)
+      board[computer.choose_winning_square(board)] = computer.marker
+    elsif human.can_win?(board)
+      board[human.choose_winning_square(board)] = computer.marker
+    elsif board.empty_keys.include?(Board::STRATEGIC_SQUARE)
+      board[Board::STRATEGIC_SQUARE] = computer.marker
+    else
+      board[board.empty_keys.sample] = computer.marker
+    end
     @current_player = human.marker
   end
 
@@ -286,6 +316,7 @@ class TTTGame
   def display_board
     display_score
     display_markers
+    # display last move
     board.draw
     puts ""
   end
